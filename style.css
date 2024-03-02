@@ -1,0 +1,154 @@
+html {
+    box-sizing: border-box;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --body-color: #f0fdfa;
+    --font-color: #fff;
+    --header-color: #0d9488;
+    --secondary-color: #14b8a6;
+    --sign-color: #737373;
+    --border-color: #404040;
+    --highlight-color: #fecaca;
+    --board-corner-radius: 20px;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    background-color: var(--body-color);
+}
+
+/* Header */
+.header {
+    height: max(15vh, 70px);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: max(4rem, 9vh);
+    color: var(--font-color);
+    background-color: var(--header-color);
+}
+
+/* Status */
+.status {
+    font-size: 2.5rem;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* Gameboard */
+.gameboard {
+    min-height: 500px;
+    min-width: 500px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    color: var(--sign-color);
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.gameboard > div {
+    /* Styles for the size of the signs and border */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 10px var(--border-color);
+    font-size: 7.5rem;
+    overflow: hidden;
+}
+
+@media (max-width: 500px) {
+    /* Smaller gameboard for smaller screens */
+    .gameboard {
+        min-height: 350px;
+        min-width: 350px;
+    }
+
+    .gameboard > div {
+        font-size: 5rem;
+    }
+}
+
+.gameboard > div:hover:not(.not-allowed) {
+    /* Hover effect for available spaces */
+    background-color: rgba(0, 0, 0, 0.1);   
+}
+
+.allow {
+    /* Available spaces */
+    cursor: pointer;
+}
+
+.not-allowed {
+    /* Unavailable spaces */
+    cursor: default;
+}
+
+.highlight {
+    /* Highlight effect for winning combination */
+    background-color: var(--highlight-color);
+}
+
+/* Remove extra borders and apply rounded corners */
+.gameboard > div:first-child,
+.gameboard > div:nth-child(2),
+.gameboard > div:nth-child(4),
+.gameboard > div:nth-child(5),
+.gameboard > div:nth-child(7),
+.gameboard > div:nth-child(8) {
+    border-right: none;
+}
+
+.gameboard > div:nth-child(-n + 6) {
+    border-bottom: none;
+}
+
+.gameboard > div:first-child {
+    border-top-left-radius: var(--board-corner-radius);
+}
+
+.gameboard > div:nth-child(3) {
+    border-top-right-radius: var(--board-corner-radius);
+}
+
+.gameboard > div:nth-child(7) {
+    border-bottom-left-radius: var(--board-corner-radius);
+}
+
+.gameboard > div:nth-child(9) {
+    border-bottom-right-radius: var(--board-corner-radius);
+}
+
+/* Restart button */
+.restart {
+    min-height: 50px;
+    min-width: 150px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    background-color: var(--secondary-color);
+    color: var(--font-color);
+    font-weight: bold;
+    font-size: 2rem;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.restart:hover {
+    /* Hover effect for restart button */
+    background-color: var(--header-color);
+}
